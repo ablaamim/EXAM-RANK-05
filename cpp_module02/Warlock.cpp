@@ -34,17 +34,17 @@ void	Warlock::introduce() const
 
 void	Warlock::learnSpell(ASpell *spell)
 {
-	container.insert(std::pair<std::string, ASpell *>(spell->getName(), spell->clone()));
+	book.learnSpell(spell);
 }
 
 void	Warlock::forgetSpell(std::string name)
 {
-	container.erase(name);
+	book.forgetSpell(name);
 }
 
 void	Warlock::launchSpell(std::string name, ATarget const &target)
 {
-	ASpell *spell = container[name];
+	ASpell *spell = book.createSpell(name);
 	if (spell)
 		spell->launch(target);
 }
